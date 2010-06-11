@@ -1,4 +1,6 @@
 <?php
+namespace Lol;
+
 require_once 'lexer.php';
 require_once 'start.php';
 require_once 'string.php';
@@ -9,16 +11,16 @@ require_once 'btw.php';
 require_once 'visible.php';
 require_once 'kthxbai.php';
 
-class Lol_Parser
+class Parser
 {
 	protected $tree = array();
 	protected $statement = array();
 
 	protected $token = null;
 
-	public function __construct(Lol_Lexer $lexer)
+	public function __construct(Lexer $lexer)
 	{
-		$this->token = new Lol_Token_Start();
+		$this->token = new Token\Start();
 		array_map(array($this, 'parse_token'), $lexer->tokens);
 	}
 
@@ -26,25 +28,25 @@ class Lol_Parser
 	{
 		switch($source['type']) {
 			case 'T_STRING':
-				$token = new Lol_Token_String();
+				$token = new Token\String();
 				break;
 			case 'T_UNKNOWN':
-				$token = new Lol_Token_Unknown();
+				$token = new Token\Unknown();
 				break;
 			case 'T_END':
-				$token = new Lol_Token_End();
+				$token = new Token\End();
 				break;
 			case 'T_HAI':
-				$token = new Lol_Token_Hai();
+				$token = new Token\Hai();
 				break;
 			case 'T_BTW':
-				$token = new Lol_Token_Btw();
+				$token = new Token\Btw();
 				break;
 			case 'T_VISIBLE':
-				$token = new Lol_Token_Visible();
+				$token = new Token\Visible();
 				break;
 			case 'T_KTHXBAI':
-				$token = new Lol_Token_Kthxbai();
+				$token = new Token\Kthxbai();
 				break;
 			default:
 				throw new Exception(__FUNCTION__ . ": unimplemented keyword $token");
@@ -52,7 +54,7 @@ class Lol_Parser
 		
 		if($this->token->expects($source['type'])) {
 			$this->token = $token;
-			if ($token instanceof Lol_Token_End) {
+			if ($token instanceof Token\End) {
 				$this->tree[] = $this->statement;
 				$this->statement = array();
 			} else {

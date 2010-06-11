@@ -1,7 +1,8 @@
 <?php
+namespace Lol\Token;
 require_once 'token.php';
 
-class Lol_Token_Start extends Lol_Token
+class Start extends \Lol\Token
 {
 	protected $expects = array(
 		'T_HAI',

@@ -8,5 +8,5 @@ VISIBLE "Hello World!"
 KTHXBAI
 ';
 
-$code = new Lol_Code($lol, true);
+$code = new \Lol\Code($lol, true);
 $code->parse();

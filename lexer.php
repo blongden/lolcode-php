@@ -1,5 +1,7 @@
 <?php
-class Lol_Lexer
+namespace Lol;
+
+class Lexer
 {
 	protected $debug = false;
 	public $tokens = array();
@@ -47,7 +49,7 @@ class Lol_Lexer
 					$type = 'T_END';
 					break;
 				default:
-					if(in_array("T_".strtoupper($token), Lol_Lexer::$map)) {
+					if(in_array("T_".strtoupper($token), Lexer::$map)) {
 						$type = "T_".strtoupper($token);
 						break;
 					}

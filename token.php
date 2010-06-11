@@ -1,5 +1,7 @@
 <?php
-class Lol_Token
+namespace Lol;
+
+class Token
 {
 	protected $expects = array();
 	public function expects($type)

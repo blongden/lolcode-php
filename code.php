@@ -1,8 +1,10 @@
 <?php
+namespace Lol;
+
 require_once 'lexer.php';
 require_once 'parser.php';
 
-class Lol_Code
+class Code
 {
 	protected $debug = false;
 
@@ -11,8 +13,8 @@ class Lol_Code
 	public function __construct($code, $debug = false)
 	{
 		$this->debug = $debug;
-		$lexer = new Lol_Lexer($code, $debug);
-		$this->tree = new Lol_Parser($lexer, $debug);
+		$lexer = new \Lol\Lexer($code, $debug);
+		$this->tree = new \Lol\Parser($lexer, $debug);
 	}
 
 	public function parse()

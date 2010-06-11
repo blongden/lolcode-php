@@ -1,7 +1,9 @@
 <?php
+namespace Lol\Token;
+
 require_once 'token.php';
 
-class Lol_Token_Btw extends Lol_Token
+class Btw extends \Lol\Token
 {
 	protected $expects = array(
 		'T_UNKNOWN',
