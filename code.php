@@ -8,17 +8,22 @@ class Code
 {
 	protected $debug = false;
 
-	protected $tree = null;
+	protected $parser = null;
 
 	public function __construct($code, $debug = false)
 	{
 		$this->debug = $debug;
 		$lexer = new \Lol\Lexer($code, $debug);
-		$this->tree = new \Lol\Parser($lexer, $debug);
+		$this->parser = new \Lol\Parser($lexer, $debug);
 	}
 
-	public function parse()
+	public function exec()
 	{
-		print_r($this->lexer);
+		foreach($this->parser->getTree() as $cmd) {
+			// pop the top off
+			$op = $cmd[0];
+			$args = array_slice($cmd, 1);
+			if ($op) $op->run($args);
+		}
 	}
 }

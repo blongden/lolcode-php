@@ -28,7 +28,7 @@ class Parser
 	{
 		switch($source['type']) {
 			case 'T_STRING':
-				$token = new Token\String();
+				$token = new Token\String($source['value']);
 				break;
 			case 'T_UNKNOWN':
 				$token = new Token\Unknown();
@@ -49,7 +49,7 @@ class Parser
 				$token = new Token\Kthxbai();
 				break;
 			default:
-				throw new Exception(__FUNCTION__ . ": unimplemented keyword $token");
+				throw new \Exception(__FUNCTION__ . ": unimplemented keyword $token");
 		}
 		
 		if($this->token->expects($source['type'])) {
@@ -61,7 +61,12 @@ class Parser
 				$this->statement[] = $token;
 			}
 		} else {
-			throw new Exception(__FUNCTION__ . ": parser error: '{$source['type']}' unexpected.");
+			throw new \Exception(__FUNCTION__ . ": parser error: '{$source['type']}' unexpected.");
 		}
+	}
+
+	public function getTree()
+	{
+		return $this->tree;
 	}
 }
