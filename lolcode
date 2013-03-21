@@ -1,0 +1,7 @@
+#!/usr/bin/env php
+<?php require 'code.php';
+
+$lol = file_get_contents( $argv[1] );
+
+$code = new \Lol\Code($lol, false);
+$code->exec();
