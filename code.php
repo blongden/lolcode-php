@@ -20,7 +20,11 @@ class Code
 	public function exec()
 	{
 		foreach($this->parser->getTree() as $cmd) {
-			// pop the top off
+			// If it's an empty line, just skip to the next command...
+			if ( empty( $cmd ) ) {
+				continue;
+			}
+			// Popping the top index off...
 			$op = $cmd[0];
 			$args = array_slice($cmd, 1);
 			if ($op) $op->run($args);
