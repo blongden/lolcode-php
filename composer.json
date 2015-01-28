@@ -1,0 +1,11 @@
+{
+    "name": "lolcodephp/lolcodephp",
+    "description": "LOLCODE Parser for PHP",
+    "authors": [
+        {
+            "name": "Ben Longden",
+            "email": "ben@nocarrier.co.uk"
+        }
+    ],
+    "require": {}
+}
